@@ -18,9 +18,28 @@ class QuoteList extends StatefulWidget {
 class _QuoteListState extends State<QuoteList> {
   List<Quote> quotes = [
     Quote(author: 'daniel', text: 'be honest to yourself'),
-    Quote(author: 'kyeyune', text: 'I have nothing to declare except my genius'),
+    Quote(
+        author: 'kyeyune', text: 'I have nothing to declare except my genius'),
     Quote(author: 'ethan', text: 'the truth is rarely pre and never simple'),
   ];
+
+  Widget quoteTemplate(quote) {
+    return Card(
+        margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+        child: Column(
+          children: [
+            Text(quote.text,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey[600],
+                )),
+            SizedBox(height: 10),
+            Text(quote.author,
+                style: TextStyle(fontSize: 14, color: Colors.grey[800])),
+          ],
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,9 +51,10 @@ class _QuoteListState extends State<QuoteList> {
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: quotes
-              .map((quote) => Text('${quote.text} - ${quote.author}'))
-              .toList(),
+          children: quotes.map((quote)=>quoteTemplate(quote)).toList(),
+          // quotes
+          //     .map((quote) => Text('${quote.text} - ${quote.author}'))
+          //     .toList(),
           // elevation: 0,
         ));
   }
