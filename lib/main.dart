@@ -1,7 +1,7 @@
 // import 'dart:ffi';
 // import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'quote.dart';
 
 void main() => runApp(MaterialApp(
       // home: Text("hello world"),
@@ -16,12 +16,11 @@ class QuoteList extends StatefulWidget {
 }
 
 class _QuoteListState extends State<QuoteList> {
-  List<String> quotes = [
-    'Be honest to oneself',
-    'I have nothing to declare except my genius',
-    'The truth is rarely pure and never simple'
+  List<Quote> quotes = [
+    Quote(author: 'daniel', text: 'be honest to yourself'),
+    Quote(author: 'kyeyune', text: 'I have nothing to declare except my genius'),
+    Quote(author: 'ethan', text: 'the truth is rarely pre and never simple'),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +31,11 @@ class _QuoteListState extends State<QuoteList> {
           backgroundColor: Colors.green[200],
         ),
         body: Column(
-          children: quotes.map((quote) => Text(quote)).toList(),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: quotes
+              .map((quote) => Text('${quote.text} - ${quote.author}'))
+              .toList(),
+          // elevation: 0,
         ));
   }
 }
